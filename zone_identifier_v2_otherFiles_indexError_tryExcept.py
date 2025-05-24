@@ -21,7 +21,7 @@ p_list = glob.glob(p + '/**/*', recursive=True)							# auchma mit 'walk' probie
 
 
 
-###  SUCHE & CUTTE : _Zone.Identifier & desktop.ini
+###  SUCHE & CUTTE : _Zone.Identifier & desktop.ini & otherFiles 
 
 n = 0
 m = 0
@@ -35,7 +35,7 @@ for p_i in p_list:
 	n = n + 1
 	#print(p_ext[-5:])
 	try:																	# # because FM: "string index out of range"  (-> ext ist kürzer als bei OTHER_FILE erfragt, auch_mögl.bei p_ext kürzer '_Zone' (oder 'desktop'))
-		if ext == '.Identifier' and p_ext[-5:] == '_Zone': 					# doubleCheck=safer , letzen_5_Zeichen von path+filename == '_Zone'
+		if ext == '.Identifier' and p_ext[-5:] == '_Zone' and os.path.isfile(p_i): 	# tripleCheck=safer , letzen_5_Zeichen von path+filename == '_Zone' & isFile 
 			print('\nZONE-IDENTIFIER')
 			print(ext)
 			print(p_i)
@@ -45,14 +45,14 @@ for p_i in p_list:
 		#print(filename)
 		#print(p_ext[-7:])													# same, nur per splitext
 		## ZUSAMMENFASSEN? : beide if-statements mit EINEM 'or' verbinden
-		if ext == '.ini' and p_ext[-7:] == 'desktop': 						# doubleCheck=safer   (DoppelAbgleich)
+		if ext == '.ini' and p_ext[-7:] == 'desktop' and os.path.isfile(p_i): 		# tripleCheck=safer   (TripleAbgleich)
 			print('\nDESKTOP-INI')
 			print(ext)
 			print(p_i)
 			m = m + 1
 			#hier dann cut-Befehl
 		#if ext == '.jpg_*':			# DOESNT_WORK, need wildcard
-		if ext[0] == '.' and (ext[4] == '_' or ext[3] == '_' or ext[5] == '_'):		# ohne try/except: FM: string index out of range   (->für die ext die kürzeren Index haben)
+		if ext[0] == '.' and (ext[4] == '_' or ext[3] == '_' or ext[5] == '_') and os.path.isfile(p_i):		# ohne try/except: FM: string index out of range   (->für die ext die kürzeren Index haben)
 			print('\nOTHER-FILE')
 			print(ext)
 			print(p_i)
