@@ -1,4 +1,4 @@
 # file_finder
-identifies &amp; copies files
+identifies &amp; moves files
 
 ... in process ...
