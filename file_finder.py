@@ -24,16 +24,16 @@ op = input()
 p_list = glob.glob(p + '/**/*', recursive=True)
 
 
-###  SUCHE & CUTTE												 		[+ PRINT & LOG] 
+###  SUCHE & CUTTE												[+ PRINT & LOG] 
 
 m = 0
-d = 0																	# desktop.ini -Counter
+d = 0														# desktop.ini -Counter
 print('\n\nEs wird durchsucht... und verschoben...\n')
 for p_i in p_list:
 	p_ext, ext = os.path.splitext(p_i)									# path+filename & extension
 	try:
 		### .IDENTIFIER  ###
-		if ext == '.Identifier' and p_ext[-5:] == '_Zone' and os.path.isfile(p_i):		# tripleCheck
+		if ext == '.Identifier' and p_ext[-5:] == '_Zone' and os.path.isfile(p_i):			# tripleCheck
 			print('\nZONE-IDENTIFIER')
 			print(p_i)
 			m = m + 1
@@ -47,7 +47,7 @@ for p_i in p_list:
 			else:
 				shutil.move(p_i, op)
 		###  DESKTOP.INI  ### 
-		if ext.lower() == '.ini' and p_ext[-7:].lower() == 'desktop' and os.path.isfile(p_i): 			# tripleCheck
+		if ext.lower() == '.ini' and p_ext[-7:].lower() == 'desktop' and os.path.isfile(p_i): 		# tripleCheck
 			print('\nDESKTOP-INI')
 			print(p_i)
 			m = m + 1
@@ -57,7 +57,7 @@ for p_i in p_list:
 				f1.write('\n\nDESKTOP-INI\n' + p_i)
 			## MOVE	+ ReName
 			fn = os.path.split(p_ext)[1]								# filename
-			op_d = op + '\\' + fn + str(d) + ext						# renaming_variable
+			op_d = op + '\\' + fn + str(d) + ext							# renaming_variable
 			shutil.move(p_i, op_d)
 		###  OTHER_FILES  ### 
 		if ext[0] == '.' and (ext[4] == '_' or ext[3] == '_' or ext[5] == '_') and os.path.isfile(p_i):		# für 3-, 2- & 4- Zeichen-Endungen
