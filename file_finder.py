@@ -60,7 +60,7 @@ for p_i in p_list:
 			op_d = op + '\\' + fn + str(d) + ext							# renaming_variable
 			shutil.move(p_i, op_d)
 		###  OTHER_FILES  ### 
-		if ext[0] == '.' and (ext[4] == '_' or ext[3] == '_' or ext[5] == '_') and os.path.isfile(p_i):		# für 3-, 2- & 4- Zeichen-Endungen
+		if ext[0] == '.' and (ext[4] == '_' or ext[3] == '_' or ext[5] == '_') and os.path.isfile(p_i):	# für 3-, 2- & 4- Zeichen-Endungen
 			print('\nOTHER-FILE')
 			print(p_i)
 			m = m + 1
